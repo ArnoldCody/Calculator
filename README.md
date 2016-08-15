@@ -1,2 +1,4 @@
-# Calculator
-calculator by python
+calculator
+==========
+
+Calculator implemented in Python
