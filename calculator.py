@@ -1,5 +1,5 @@
-#Scott Snow
-#Comp 141, Homework 7
+#coding:utf-8
+#Author: Arnold YANG
 #Python Calculator (calculator.py)
 
 import evaluators
@@ -13,7 +13,13 @@ import scanner
 def printTokens(tokens):
     iterator = 0
     expressions = ''
+    """test
+    print "tokens[iterator]: ", tokens[iterator]
+    print "tokens[iterator].getType(): ", tokens[iterator].getType()
+    print "tokens[iterator].getValue(): ", tokens[iterator].getValue()
+    """
     while iterator != len(tokens):
+        # 用三个条件句call tokens列表 里面类的methods，之后print，直到 iterator = len(tokens)
         if tokens[iterator].getType() == TokenType.NUMBER_TOKEN:
             print "Number:\t\t",
             print tokens[iterator].getValue()
@@ -30,11 +36,11 @@ def printTokens(tokens):
     print 'Expression:',
     print expressions
 
-def main():
+def main(): # 运行主程序
     while True:
         print "\nPython Calculator: "
         line = list()
-        while True:
+        while True: # delete the ' ' in input and add a ' ' in the end
             user_input = raw_input("Enter Expression: ")
             user_input = user_input.replace(' ', '')
             if user_input is not None and len(user_input.strip()) == 0:
@@ -43,17 +49,28 @@ def main():
             line.append(user_input)
             break
         expr = line
+        """test
+        test print len(expr)
+        if input is 1+1
+        return ["1+1 "]
+        """
+
         if len(expr) == 0:
             break
         try:
             scan = scanner.Scanner()
             tokens = list()
+            # test print "tokens: ", tokens
             tokens = scan.parseExpression(expr[0])
-            printTokens(tokens)
-            parsers = Parsers()
-            expressionTree = parsers.parse(tokens)
+            # 返回列表self.tokens，里面包含 token.py 里面类的实例
+            # test print "tokens: ", tokens
+            printTokens(tokens) # 打印 expression 以及每一个 tokentype 和 tokenvalue
+            parsers = Parsers() # 将 parsers 设为 Class Parsers 的一个实例
+            expressionTree = parsers.parse(tokens) # call Parsers.parse()
+            # test print "expressionTree: ", expressionTree
             evaluator = evaluators.Evaluators()
             result = evaluator.evaluate(expressionTree)
+            # test print "2nd expressionTree: ", expressionTree
             print '\nResult:',
             print result
         except CalcExceptions, x:

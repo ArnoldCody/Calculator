@@ -8,9 +8,14 @@ class Evaluators:
     def __init__(self):
         pass
     def evaluate(self, root):
+        """test
+        self.root = root
+        print "root:", self.root
+        """
         if isinstance(root, NumberExpressionTree):
             return root.getNumber()
         oper = root.getOperator()
+        # test print oper
         if oper == '~':
             return -1.0 * self.evaluate(root.right)
         else:

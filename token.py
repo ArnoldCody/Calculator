@@ -14,7 +14,7 @@ class Token:
         pass
     def getType(self):
         return 0
-    
+
 #This class extends the base Token class
 #Stores a real number
 class NumberToken(Token):

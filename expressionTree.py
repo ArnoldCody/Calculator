@@ -16,6 +16,10 @@ class OperatorExpressionTree(ExpressionTree):
         self.right = right
     def getOperator(self):
         return self.data
+    """test
+    def test(self):
+        print self.data, ",", self.left, ",", self.right
+    """
 
 class NumberExpressionTree(ExpressionTree):
     def __init__(self, data):
