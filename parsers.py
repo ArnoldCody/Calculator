@@ -2,6 +2,11 @@
 #Author:Arnold YANG
 #Python Calculator (calculator.py)
 
+"""继续学习此代码
+研究返回值
+"""
+
+
 from calcExceptions import CalcExceptions
 import expressionTree
 from token import TokenType
@@ -50,6 +55,9 @@ class Parsers:
             oper = self.currentToken.getValue() # 调用 token 类的 getValue(), 返回 +-
             self.consumeToken() # 取下一个实例
             expr = expressionTree.OperatorExpressionTree(oper, expr, self.parseTerm())
+            """
+            term 里面的 self.parseFactor() 开启解析下一个数字。然后一直递归。直至解析完成，最后 eTree 的 right 分支会根据 4 则运算法则逐渐成长）
+            """
         return expr
 
     def parseTerm(self):
@@ -63,6 +71,9 @@ class Parsers:
             oper = self.currentToken.getValue() # 调用 token 类的 getValue(), 返回 */
             self.consumeToken() # 取下一个实例
             term = expressionTree.OperatorExpressionTree(oper, term, self.parseFactor())
+        """
+        term 里面的 self.parseFactor() 开启解析下一个数字。然后一直递归。直至解析完成，最后 eTree 的 right 分支会根据 4 则运算法则逐渐成长）
+        """
         return term
 
     def parseFactor(self):
